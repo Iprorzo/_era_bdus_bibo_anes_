@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аренда недвижимости в Казахстане</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #f4f4f4;
+            line-height: 1.6;
+            background-color: #2b2523; /* Коричневый фон */
+        }
+
+        header {
+            background-color: #4a3f35;
+            padding: 20px 10px;
+            text-align: center;
+            color: #f4f4f4;
+            border-bottom: 3px solid #8d6e63;
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            margin: 20px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #d7ccc8;
+            margin: 0 15px;
+            font-size: 1.2em;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #3e342f;
+            border: 1px solid #8d6e63;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            font-size: 1.6em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #f4f4f4;
+        }
+
+        .card-content p {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            color: #d7ccc8;
+        }
+
+        .card-content .price {
+            font-size: 1.3em;
+            color: #ffcc80;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #4a3f35;
+            color: #d7ccc8;
+            margin-top: 20px;
+            border-top: 3px solid #8d6e63;
+            font-size: 1.1em;
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #3e342f;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .modal-content h2 {
+            font-size: 2em;
+            margin: 20px 0 10px;
+            color: #f4f4f4;
+        }
+
+        .modal-content p {
+            font-size: 1.1em;
+            color: #d7ccc8;
+            margin-bottom: 10px;
+        }
+
+        .modal-content .price {
+            font-size: 1.5em;
+            color: #ffcc80;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #d7ccc8;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .close-btn:hover {
+            color: #ffcc80;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Аренда недвижимости в Казахстане</h1>
+        <nav>
+            <a href="about.html">Главная</a>
+            <a href="index.html">Объявления</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="grid">
+
+            <div class="card" data-id="1">
+                <img src="1-750x470.jpg" alt="Офис в Алматы">
+                <div class="card-content">
+                    <h3>Офис в Алматы</h3>
+                    <p>Местоположение: Байтерек 27</p>
+                    <p class="price">150 000 ₸ / неделя</p>
+                </div>
+            </div>
+            <div class="card" data-id="2">
+                <img src="313ba106e2c279d94975aed674a0d245.jpg" alt="Современная вилла">
+                <div class="card-content">
+                    <h3>Современная вилла</h3>
+                    <p>Местоположение: Центр города</p>
+                    <p class="price">250 000 ₸ / неделя</p>
+                </div>
+            </div>
+            <div class="card" data-id="3">
+                <img src="diploma.webp" alt="Уютный коттедж">
+                <div class="card-content">
+                    <h3>Уютный коттедж</h3>
+                    <p>Местоположение: Пригород</p>
+                    <p class="price">120 000 ₸ / неделя</p>
+                </div>
+            </div>
+            <div class="card" data-id="4">
+                <img src="evans-st-franklin-historic-district-p-shea-design-img~9c0165b5020513f2_9-1261-1-e186155.jpg" alt="Дом для семьи">
+                <div class="card-content">
+                    <h3>Дом для семьи</h3>
+                    <p>Местоположение: Уютный район</p>
+                    <p class="price">200 000 ₸ / неделя</p>
+                </div>
+            </div>
+            <div class="card" data-id="5">
+                <img src="33b23e3e4cba0ddb61d8bc8ef57d5030.jpg" alt="Шале в горах">
+                <div class="card-content">
+                    <h3>Шале в горах</h3>
+                    <p>Местоположение: Горный регион</p>
+                    <p class="price">220 000 ₸ / неделя</p>
+                </div>
+            </div>
+            <div class="card" data-id="6">
+                <img src="XXL_height.webp" alt="Загородный дом">
+                <div class="card-content">
+                    <h3>Загородный дом</h3>
+                    <p>Местоположение: Тихий пригород</p>
+                    <p class="price">180 000 ₸ / неделя</p>
+                </div>
+            </div>
+            <div class="card" data-id="7">
+                <img src="aba7a39c909e193ecba0bfb113698fd3.jpg" alt="Экологичный дом">
+                <div class="card-content">
+                    <h3>Экологичный дом</h3>
+                    <p>Местоположение: Зелёная зона</p>
+                    <p class="price">160 000 ₸ / неделя</p>
+                </div>
+            </div>
+            <div class="card" data-id="8">
+                <img src="gostinaya-sovremennom-stile-kvartira-studiya-molodoi-pary-foto-1.jpg" alt="Квартира для пары">
+                <div class="card-content">
+                    <h3>Квартира для пары</h3>
+                    <p>Местоположение: Рядом с парком</p>
+                    <p class="price">100 000 ₸ / неделя</p>
+                </div>
+            </div>
+            <div class="card" data-id="9">
+                <img src="3861177856cb9996c8266edcf248465c.jpg" alt="Дом на берегу озера">
+                <div class="card-content">
+                    <h3>Дом на берегу озера</h3>
+                    <p>Местоположение: Лесной регион</p>
+                    <p class="price">300 000 ₸ / неделя</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        © 2025 Аренда недвижимости в Казахстане. Все права защищены.
+    </footer>
+
+    <!-- Модальное окно -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeModal">×</button>
+            <img id="modalImage" src="" alt="">
+            <h2 id="modalTitle"></h2>
+            <p id="modalLocation"></p>
+            <p id="modalDescription"></p>
+            <p class="price" id="modalPrice"></p>
+        </div>
+    </div>
+
+    <script>
+        // Данные для карточек
+        const properties = [
+            {
+                id: 1,
+                image: "1-750x470.jpg",
+                title: "Офис в Алматы",
+                location: "Байтерек 27",
+                description: "5-комнатный офис с удобным местоположением. Рядом есть кафе, кофейня и магазин.",
+                price: "150 000 ₸ / неделя"
+            },
+            {
+                id: 2,
+                image: "313ba106e2c279d94975aed674a0d245.jpg",
+                title: "Современная вилла",
+                location: "Центр города",
+                description: "Просторная и роскошная вилла с современными удобствами.",
+                price: "250 000 ₸ / неделя"
+            },
+            {
+                id: 3,
+                image: "diploma.webp",
+                title: "Уютный коттедж",
+                location: "Пригород",
+                description: "Очаровательный коттедж с красивым садом и живописным видом.",
+                price: "120 000 ₸ / неделя"
+            },
+            {
+                id: 4,
+                image: "evans-st-franklin-historic-district-p-shea-design-img~9c0165b5020513f2_9-1261-1-e186155.jpg",
+                title: "Дом для семьи",
+                location: "Уютный район",
+                description: "Просторный дом, идеально подходящий для семьи. Большой двор и детская площадка.",
+                price: "200 000 ₸ / неделя"
+            },
+            {
+                id: 5,
+                image: "33b23e3e4cba0ddb61d8bc8ef57d5030.jpg",
+                title: "Шале в горах",
+                location: "Горный регион",
+                description: "Уютное шале с потрясающим видом на горы.",
+                price: "220 000 ₸ / неделя"
+            },
+            {
+                id: 6,
+                image: "XXL_height.webp",
+                title: "Загородный дом",
+                location: "Тихий пригород",
+                description: "Идеальный дом для семьи с просторными комнатами и большим садом.",
+                price: "180 000 ₸ / неделя"
+            },
+            {
+                id: 7,
+                image: "aba7a39c909e193ecba0bfb113698fd3.jpg",
+                title: "Экологичный дом",
+                location: "Зелёная зона",
+                description: "Дом с солнечными панелями и современными удобствами.",
+                price: "160 000 ₸ / неделя"
+            },
+            {
+                id: 8,
+                image: "gostinaya-sovremennom-stile-kvartira-studiya-molodoi-pary-foto-1.jpg",
+                title: "Квартира для пары",
+                location: "Рядом с парком",
+                description: "Уютная квартира с одной спальней и современным ремонтом.",
+                price: "100 000 ₸ / неделя"
+            },
+            {
+                id: 9,
+                image: "3861177856cb9996c8266edcf248465c.jpg",
+                title: "Дом на берегу озера",
+                location: "Лесной регион",
+                description: "Прекрасный дом с видом на озеро и личным причалом.",
+                price: "300 000 ₸ / неделя"
+            }
+        ];
+
+        // Открытие модального окна
+        const cards = document.querySelectorAll('.card');
+        const modal = document.getElementById('modal');
+        const closeModal = document.getElementById('closeModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalLocation = document.getElementById('modalLocation');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalPrice = document.getElementById('modalPrice');
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.getAttribute('data-id');
+                const property = properties.find(p => p.id == id);
+                if (property) {
+                    modalImage.src = property.image;
+                    modalTitle.textContent = property.title;
+                    modalLocation.textContent = `Местоположение: ${property.location}`;
+                    modalDescription.textContent = `Описание: ${property.description}`;
+                    modalPrice.textContent = property.price;
+                    modal.style.display = 'flex';
+                }
+            });
+        });
+
+        // Закрытие модального окна
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
